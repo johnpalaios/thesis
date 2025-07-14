@@ -12,8 +12,7 @@ import java.util.Random;
 
 public class StateAccumulator extends KeyedProcessFunction<String,
         Tuple2<String, Integer>, String> {
-    private ListState<Integer
-            > state;
+    private ListState<Integer> state;
     private Random random;
 
     @Override
