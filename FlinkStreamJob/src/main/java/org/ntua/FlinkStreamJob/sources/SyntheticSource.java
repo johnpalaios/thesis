@@ -6,14 +6,14 @@ import org.apache.flink.configuration.Configuration;
 
 import java.util.Random;
 
-public class SyntheticSource extends RichParallelSourceFunction<Tuple2<String, Integer>> {
+public class SyntheticSource extends RichParallelSourceFunction<Tuple2<Integer, Integer>> {
     private volatile boolean running = true;
     private final Random random = new Random();
 
     @Override
-    public void run(SourceContext<Tuple2<String, Integer>> ctx) throws Exception {
+    public void run(SourceContext<Tuple2<Integer, Integer>> ctx) throws Exception {
         while(running) {
-            String key = "key-" + random.nextInt(1_000_000);
+            Integer key = random.nextInt(1_000_000);
             Integer value = random.nextInt(100);
             ctx.collect(new Tuple2<>(key, value));
         }

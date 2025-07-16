@@ -10,8 +10,8 @@ import org.apache.flink.util.Collector;
 
 import java.util.Random;
 
-public class StateAccumulator extends KeyedProcessFunction<String,
-        Tuple2<String, Integer>, String> {
+public class StateAccumulator extends KeyedProcessFunction<Integer,
+        Tuple2<Integer, Integer>, String> {
     private ListState<Integer> state;
     private Random random;
 
@@ -24,8 +24,8 @@ public class StateAccumulator extends KeyedProcessFunction<String,
     }
 
     @Override
-    public void processElement(Tuple2<String, Integer> value, KeyedProcessFunction<String,
-            Tuple2<String, Integer>, String>.Context ctx, Collector<String> out)
+    public void processElement(Tuple2<Integer, Integer> value, KeyedProcessFunction<Integer,
+            Tuple2<Integer, Integer>, String>.Context ctx, Collector<String> out)
             throws Exception {
         state.add(value.f1);
         if (random.nextInt(1000) == 0) {
